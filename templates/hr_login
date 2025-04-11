@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HR Login</title>
+</head>
+<body>
+    <h2>HR Login</h2>
+    <form method="post">
+        <input type="password" name="password" placeholder="Enter admin password" required>
+        <button type="submit">Login</button>
+    </form>
+    {% if message %}
+        <p style="color:red;">{{ message }}</p>
+    {% endif %}
+</body>
+</html>
