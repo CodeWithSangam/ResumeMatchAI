@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Match Result - ResumeMatchAI</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .progress-container {
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 30px;
+            width: 100%;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0;
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            line-height: 30px;
+            transition: width 2s ease;
+        }
+
+        ul {
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 6px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Match Score:</h1>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-bar-fill" id="scoreBar">{{ score }}%</div>
+            </div>
+        </div>
+
+        <h2>📋 Parsed Resume Data:</h2>
+        <ul>
+            <li><strong>Skills:</strong> {{ resume.skills }}</li>
+            <li><strong>Experience:</strong> {{ resume.experience }} years</li>
+            <li><strong>Education:</strong> {{ resume.education }}</li>
+        </ul>
+
+        <a href="/">🔙 Go Back</a>
+    </div>
+
+    <script>
+        // Animate progress bar width
+        const bar = document.getElementById('scoreBar');
+        const score = parseFloat(bar.textContent);
+        bar.style.width = score + '%';
+    </script>
+</body>
+</html>
