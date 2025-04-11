@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Submission Form</title>
+
+    <!-- Correct Flask path for style.css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Resume Submission Form</h2>
+        <form id="resumeForm" action="/match" method="post" enctype="multipart/form-data">
+            <!-- Name Field -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <!-- Email Field -->
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <!-- Address Field -->
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
+
+            <!-- File Upload Field -->
+            <label for="resume">Upload Resume (PDF/TXT only):</label>
+            <input type="file" id="resume" name="resume" accept=".pdf, .txt" required>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <!-- Correct Flask path for script.js -->
+    <!--<script src="{{ url_for('static', filename='script.js') }}"></script>-->
+    <form action="/match" method="post" enctype="multipart/form-data">
+
+</body>
+</html>
