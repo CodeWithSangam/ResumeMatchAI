@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HR Dashboard</title>
+    <style>
+        .stats {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+    </style>
+</head>
+<body>
+    <h2>Candidate Resume Rankings</h2>
+    <div class="stats">
+        <p><strong>Total Resumes Submitted:</strong> {{ stats.total }}</p>
+        <p><strong>Average Match Score:</strong> {{ stats.average }}%</p>
+        <p><strong>Top Match:</strong> {{ stats.top.name }} ({{ stats.top.score }}%)</p>
+    </div>
+    <a href="{{ url_for('hr_logout') }}">Logout</a>
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Score (%)</th>
+            <th>Skills</th>
+            <th>Experience</th>
+            <th>Education</th>
+            <th>Report</th>
+            <th>Email</th>
+
+        </tr>
+        {% for c in candidates %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ c.name }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.phone }}</td>
+            <td>{{ c.score }}</td>
+            <td>{{ c.skills | join(', ') }}</td>
+            <td>{{ c.experience }} years</td>
+            <td>{{ c.education }}</td>
+            <td><a href="/hr/email/{{ c.email }}">Send</a></td>
+            <td><a href="/hr/report/{{ c.email }}">Download</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('download_all_reports') }}">📦 Download All Reports (ZIP)</a>
+
+</body>
+</html>
