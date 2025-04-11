@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Submission</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Submit Your Resume</h2>
+        <form action="/submit" method="post" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Full Name" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="text" name="phone" placeholder="Phone Number" required><br>
+            <input type="file" name="resume" accept=".pdf,.txt" required><br>
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+
+        {% if score %}
+        <div class="result-box">
+            <h3>🎯 Match Score: {{ score }}%</h3>
+            <ul>
+                <li><strong>Skills:</strong> {{ resume.skills }}</li>
+                <li><strong>Experience:</strong> {{ resume.experience }} years</li>
+                <li><strong>Education:</strong> {{ resume.education }}</li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+<p style="margin-top: 20px;">
+    🔒 Are you HR? <a href="/hr/login">Login here</a>
+</p>
+
+</body>
+</html>
