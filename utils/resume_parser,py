@@ -1,0 +1,30 @@
+# utils/resume_parser.py
+
+def parse_resume(text):
+    import re
+
+    skills = re.findall(r'\b(Python|Java|Flask|NLP|AI|CSS|HTML|Spring Boot|AWS|MySQL|Kafka|DevOps|Cybersecurity)\b', text, re.IGNORECASE)
+
+    # Experience: Look for years in formats like (2019-2023)
+    experience_years = re.findall(r'(\d{4})\s*[-–]\s*(\d{4})', text)
+    if experience_years:
+        start, end = map(int, experience_years[0])
+        experience = str(end - start)
+    else:
+        experience = '0'
+
+    # Education: detect B.Tech, Diploma, M.Tech, etc.
+    if 'B.Tech' in text:
+        education = 'B.Tech'
+    elif 'Diploma' in text:
+        education = 'Diploma'
+    elif 'M.Tech' in text:
+        education = 'M.Tech'
+    else:
+        education = 'Unknown'
+
+    return {
+        'skills': list(set(skills)),
+        'experience': experience,
+        'education': education
+    }
